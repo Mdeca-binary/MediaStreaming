@@ -12,7 +12,8 @@ from main import Jinja2Templates
 from webcam_sys.webcam import Webcam
 from webcam_sys.media_transform_check import VideoTransformTrack
 from configurations.config import TemplatesConfig
-
+from authentication.oauth2 import Authentication
+from models.schemas import UserBaseMode
 
 # INITIATING VIEWS / PAGES OF THE APP
 VIEWS = APIRouter()
@@ -41,7 +42,12 @@ async def login(request: Request):
 
 @VIEWS.get("/signup")
 @VIEWS.post("/signup")
-async def signup(request: Request):
+async def signup(user_registration: UserBaseMode):
+    pass
+    
+
+@VIEWS.post("/logout")
+async def logout(request: Request):
     pass
 
 @VIEWS.post("/offer", include_in_schema=False)

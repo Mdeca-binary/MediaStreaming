@@ -35,3 +35,7 @@ DATABASE_URL = {
     "host": "localhost", 
     "database": "users"
 }
+
+class APIConfig:
+    SECRET_KEY = ""
+    

@@ -1,6 +1,7 @@
 from sqlalchemy import URL
 from sqlalchemy import create_engine
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import (DeclarativeBase, sessionmaker)
+
 
 from configurations.config import DATABASE_URL
 
@@ -19,6 +20,13 @@ db_url = URL.create(
 # CREATE ENGINE: THIS IS MYSQL DATABASE ENGINE
 engine = create_engine(url=db_configuration.DATABASE_URL, 
                        connect_args={"check_same_thread": False})
+
+# SESSION MAKER
+sessionMaker = sessionmaker(bind=engine, 
+                             autoflush=False, 
+                             expire_on_commit=False)
+
+session = sessionMaker()
 
 class Base(DeclarativeBase):
     pass
