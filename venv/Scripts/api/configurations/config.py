@@ -29,10 +29,10 @@ class VideoConfig:
     STORED_TO = os.path.join(_ROOT_DIR, "storage", "video")
 
 DATABASE_URL = {
-    "drivename": None, 
-    "username": "root",
-    "password": "mASWIKANENG", 
-    "host": "localhost", 
+    "drivername": "postgresql+psycopg2", 
+    "username": "postgres", 
+    "password": "800910156602468", 
+    "host": "localhost",
     "database": "users"
 }
 
@@ -40,7 +40,7 @@ class APIConfig:
     SECRET_KEY = ""
 
 OAUTH2_SCHEME = OAuth2PasswordBearer(
-    tokenUrl="token", 
+    tokenUrl="login", 
     scopes={"user": "",
             "information": ""}
 )
