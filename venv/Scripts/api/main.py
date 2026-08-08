@@ -9,7 +9,7 @@ API = FastAPI(title="MediaStreaming.API")
 
 logger = Logger(API.title)
 
-print(logger)
+# print(logger)
 
 # REGISTERING PAGES
 API.include_router(home.MAIN)

@@ -1,7 +1,8 @@
 from fastapi.routing import APIRouter
 
 
-MAIN = APIRouter()
+MAIN = APIRouter(prefix="", 
+                 tags=["Home"])
 
 @MAIN.get("/")
 def homepage():
