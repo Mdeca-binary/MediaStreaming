@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from views import (home, auth)
+from views import (home, auth, user)
 #
 from logs.logg import Logger
 
@@ -14,3 +14,4 @@ logger = Logger(API.title)
 # REGISTERING PAGES
 API.include_router(home.MAIN)
 API.include_router(auth.AUTH)
+API.include_router(user.USER_PROFILE)

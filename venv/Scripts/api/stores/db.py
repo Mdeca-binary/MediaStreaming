@@ -15,19 +15,19 @@ from configurations.settings import (DBConfiguration)
 db_configuration = DBConfiguration()
 
 engine = create_engine(url=db_configuration.URL)
-session_maker = sessionmaker(engine)
+session_maker = sessionmaker(bind=engine, autocommit=False, autoflush=False,)
 
 session = session_maker()
 
 class Base(DeclarativeBase):
     pass
-
 class UserDBModel(Base):
-    __tablename__ = "user"
+    __tablename__ = "users"
     id: Mapped[uuid.UUID] = mapped_column(Uuid, 
                                         primary_key=True, 
                                         nullable=False, 
-                                        index=True)
+                                        index=True, 
+                                        default=uuid.uuid4)
     username: Mapped[str] = mapped_column(String(20), 
                                         nullable=False, 
                                         index=True)
@@ -36,19 +36,24 @@ class UserDBModel(Base):
                                             index=True)
     account_created: Mapped[datetime] = mapped_column(DateTime, 
                                                         nullable=False, 
-                                                        index=True)
+                                                        index=True, 
+                                                        default=datetime.now())
     last_visit: Mapped[datetime] = mapped_column(DateTime, 
                                                     nullable=True, 
-                                                    index=True)
+                                                    index=True, 
+                                                    default=datetime.now())
     is_active: Mapped[bool] = mapped_column(Boolean, 
                                             nullable=False, 
-                                            index=True)
+                                            index=True, 
+                                            default=True)
     is_superuser: Mapped[bool] = mapped_column(Boolean, 
                                                 nullable=False, 
-                                                index=True)
+                                                index=True, 
+                                                default=False)
     is_anonymous: Mapped[bool] = mapped_column(Boolean, 
                                             nullable=False, 
-                                            index=True)
+                                            index=True, 
+                                            default=False)
     
     def __repr__(self):
         return ""
@@ -77,5 +82,3 @@ class UserDBModel(Base):
 #             )
 #             await session.add(user)
 #             await session.commit()
-
-Base.metadata.create_all(engine)
