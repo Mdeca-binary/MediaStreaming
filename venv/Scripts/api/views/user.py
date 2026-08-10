@@ -59,7 +59,8 @@ async def get_current_user(
     return user
 
 async def get_current_active_user(
-    current_user: Annotated[SignUpBaseModel, Security(get_current_user, scopes=["items"])]):
+    current_user: Annotated[SignUpBaseModel, 
+                            Security(get_current_user, scopes=["items"])]):
     if current_user.is_active != True:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, 
                             detail="Inactive user.")
@@ -67,5 +68,6 @@ async def get_current_active_user(
         
 
 @USER_PROFILE.get("/user/")
-async def profilePageView(user:Annotated[SignUpBaseModel, Depends(get_current_active_user)]) -> SignUpBaseModel:
+async def profilePageView(user:Annotated[SignUpBaseModel, 
+                                         Depends(get_current_active_user)]) -> SignUpBaseModel:
     return user
