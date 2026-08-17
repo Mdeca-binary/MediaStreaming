@@ -2,7 +2,7 @@ import uuid
 
 from datetime import datetime
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, HttpUrl
 
 
 class SignUpBaseModel(BaseModel):
@@ -28,3 +28,18 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     username: str
     scopes: list[str] = []
+    
+class ImagePost(BaseModel):
+    filename: str
+    content_type: str
+    file_size: int
+    caption: str 
+
+class VideoPost:
+    pass
+
+class MusicPost:
+    pass
+
+class TextPost:
+    pass

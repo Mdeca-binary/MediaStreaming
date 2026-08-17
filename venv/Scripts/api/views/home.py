@@ -6,4 +6,4 @@ MAIN = APIRouter(prefix="",
 
 @MAIN.get("/")
 def homepage():
-    return {"message": "Hello, World."}
+    return

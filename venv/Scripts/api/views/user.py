@@ -16,7 +16,7 @@ USER_PROFILE = APIRouter(
 )
 
 def get_user(username: str):
-    
+
     user = session.query(UserDBModel).filter_by(username=username).first()
     if user:
         user_dict = {
@@ -69,5 +69,7 @@ async def get_current_active_user(
 
 @USER_PROFILE.get("/user/")
 async def profilePageView(user:Annotated[SignUpBaseModel, 
-                                         Depends(get_current_active_user)]) -> SignUpBaseModel:
+                        Depends(get_current_active_user)]) -> SignUpBaseModel:
+    # ALL THE DATA THE USER HAS POSTED WILL BE SHOWN HERE.
     return user
+
